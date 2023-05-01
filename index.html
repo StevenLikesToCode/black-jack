@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Black Jack</title>
+        <link rel="stylesheet" href="blackjack.css">
+        <script src="blackjack.js"></script>
+    </head>
+
+    <body>
+        <div class="head">
+            <h1 id="info">Blackjack</h1>
+        </div>
+        <div class="centre">
+            <div>
+                <h2>Dealer: <span id="dealer-sum"></span></h2>
+                <div id="dealer-cards">
+                    <img id="hidden" src="./cards/BACK.png">
+                </div>
+            </div>
+            <div>
+                <h2>Player: <span id="your-sum"></span></h2>
+                <div id="your-cards"></div>
+            </div>
+        </div>
+        <div class="button_result">
+            <button id="hit">Hit</button>
+            <button id="stay">Stay</button>
+            <p id="results"></p>
+        </div>
+        <div class="chips_container">
+            <img src="images/chip_100.png" alt="chips"  id="chip_100">
+            <p id="credits"></p>
+        </div>
+        <div class="footer">
+            <p class="made_by">made by Suteng(Steven) Chen</p>
+        </div>
+    </body>
+</html>
