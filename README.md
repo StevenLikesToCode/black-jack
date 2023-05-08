@@ -2,9 +2,7 @@
 
 ## 💻 [Click here](https://stevenlikestocode.github.io/black-jack/) to see my live project.
 
-![mainPage](img/main.png)
-![searchResults](img/search_results.png)
-![movieDisplay](img/movie_display.png)
+![mainPage](images/black jack.png)
 
 
 <!--
@@ -20,9 +18,6 @@
 - Javascript
 - HTML
 - CSS
-
-## 😭 Lessons learnt
-Building the game that is too hard to win takes out the fun of the game...
 
 ## ✅ Future features
 I would like to add chips, insurance, and double players, etc.
