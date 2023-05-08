@@ -2,10 +2,11 @@
 
 ## 💻 [Click here](https://stevenlikestocode.github.io/black-jack/) to see my live project.
 
-![mainPage](images/black jack.png)
+
 
 
 <!--
+![mainPage](images/black jack.png)
 -Add in-app screenshots.
 ## ✏️ Planning & Problem Solving
 - Talk about approach to the problem.
