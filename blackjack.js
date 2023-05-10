@@ -11,7 +11,7 @@ var canHit = true; //allows the player (you) to draw while yourSum <= 21
 var canStay = true;
 
 //chips
-var yourCredicts = 2500;
+var yourCredits = 2500;
 var bet;
 
 //music
@@ -24,6 +24,7 @@ var tie = new Audio('music/tie.mp3');
 window.onload = function() {
     buildDeck();
     shuffleDeck();
+    // setBets();
     startGame();
 }
 
@@ -38,6 +39,7 @@ function buildDeck() {
         }
     }
     // console.log(deck);
+    //deck = ["A-H", "A-C", "A-S", "A-D"];
 }
 
 function shuffleDeck() {
@@ -49,43 +51,59 @@ function shuffleDeck() {
     }
 }
 
-function startGame() {
-    //we use .pop() function to get the cards from deck. We get one card everytime.
+function dealerStart() {
     hidden = deck.pop();
-    dealerSum += getValue(hidden);
-    dealerAceCount += checkAce(hidden);
-    // console.log(hidden);
-    // console.log(dealerSum);
-    while (dealerSum < 17) {
-        //<img src="./cards/4-C.png">
-        let cardImg = document.createElement("img");
-        let card = deck.pop();
-        cardImg.src = "./cards/" + card + ".png";
-        dealerSum += getValue(card);
-        dealerAceCount += checkAce(card);
-        document.getElementById("dealer-cards").append(cardImg);
-    }
-    console.log(dealerSum);
+    let cardImg = document.createElement("img");
+    let card = deck.pop();
+    cardImg.src = "./cards/" + card + ".png";
+    dealerSum = getValue(hidden) + getValue(card);
+    dealerAceCount = checkAce(hidden) + checkAce(card);
+    dealerSum = reduceAce(dealerSum, dealerAceCount);
+    document.getElementById("dealer-cards").append(cardImg);
+}
 
+function youStart(){
     for (let i = 0; i < 2; i++) {
         let cardImg = document.createElement("img");
         let card = deck.pop();
         cardImg.src = "./cards/" + card + ".png";
         yourSum += getValue(card);
         yourAceCount += checkAce(card);
+        yourSum = reduceAce(yourSum, yourAceCount);
         document.getElementById("your-cards").append(cardImg);
+        document.getElementById("your-sum").innerText = yourSum;
+        if (yourSum == 21)
+        {
+            message = "BlackJack!!!\nYou win!";
+            win.play();
+            document.getElementById("results").innerText = message;
+            canHit = false;
+            canStay = false;
+        }
     }
-    document.getElementById("your-sum").innerText = yourSum;
+}
 
-    console.log(yourSum);
+function startGame() {
+    dealerStart();
+    youStart();
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
 
 }
 
-function setBets(){
-
+function dealerJudge(){
+    while ((dealerSum < 17) || (dealerSum < yourSum)){
+        let cardImg = document.createElement("img");
+        let card = deck.pop();
+        cardImg.src = "./cards/" + card + ".png";
+        dealerSum += getValue(card);
+        dealerAceCount += checkAce(card);
+        dealerSum = reduceAce(dealerSum, dealerAceCount);
+        document.getElementById("dealer-cards").append(cardImg);
+    }
 }
+
+let endTurn = true;
 
 function hit() {
     if (!canHit) {
@@ -100,7 +118,7 @@ function hit() {
     yourAceCount += checkAce(card);
     document.getElementById("your-cards").append(cardImg);
 
-    if (reduceAce(yourSum, yourAceCount) > 21) { //A, J, 8 -> 1 + 10 + 8
+    if ((reduceAce(yourSum, yourAceCount) > 21) || (reduceAce(yourSum, yourAceCount)==21)) {
         canHit = false;
         canStay = false;
     }
@@ -111,7 +129,7 @@ function hit() {
         lose.play();
         document.getElementById("results").innerText = message;
     }else if(yourSum == 21){
-        message = "You win!";
+        message = "BlackJack!!!\nYou win!";
         win.play();
         document.getElementById("results").innerText = message;
     }
@@ -127,7 +145,7 @@ function stay() {
     canHit = false;
     canStay = false;
     document.getElementById("hidden").src = "./cards/" + hidden + ".png";
-
+    dealerJudge();
     let message = "";
     if(yourSum == 21){
         message = "BlackJack!!!\nYou win!";
@@ -183,8 +201,8 @@ function checkAce(card) {
 
 function reduceAce(playerSum, playerAceCount) {
     while (playerSum > 21 && playerAceCount > 0) {
-        playerSum -= 10;
-        playerAceCount -= 1;
+        playerSum =  playerSum - 10;
+        playerAceCount = playerAceCount - 1;
     }
     return playerSum;
 }

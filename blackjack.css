@@ -1,3 +1,8 @@
+* {
+    margin :0;
+    padding: 0;
+}
+
 body {
     background-image: url("images/table.png");
     background-size: cover;
@@ -13,23 +18,25 @@ h1 {
   }
 
 .centre {
+    margin-top: 40px;
+    margin-bottom: 30px;;
     display: flex;
     flex-direction:row-reverse;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 150px;
 }
 
 #dealer-cards img {
     height: 175px;
     width: 125px;
-    margin: 1px;
+    margin: 2px;
 }
 
 #your-cards img {
     height: 175px;
     width: 125px;
-    margin: 1px;
+    margin: 2px;
 }
 
 #hit {
@@ -66,10 +73,6 @@ h1 {
     border-radius: 50%;
 }
 
-.button_result{
-    margin-top: 50px;
-}
-
 #chip_100{
     width: 120px;
     height: 120px;
@@ -78,14 +81,16 @@ h1 {
 .chips_container{
     display: flex;
     flex-direction: row;
-    font-size: 50px;
     gap: 20px;
     color: aliceblue;
 }
 
 .footer {
-    text-align: end;
     color: white;
+    text-align:end;
+    bottom: 0;
+    margin-top: 120px;
+    margin-right: 20px;
 }
 
 h2{
@@ -93,6 +98,7 @@ h2{
    text-shadow: 4px 4px 5px #0f0f0f;
    font-family: 'Lucida Sans';
    font-size: 30px;
+   margin-bottom: 20px;;
 }
 
 #results{
@@ -100,4 +106,19 @@ h2{
     font-family: Impact, sans-serif;
     color:wheat;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.botton {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+
+#credits {
+    margin-left: -20px;
+}
+
+.money {
+    font-size: 30px;
+    
 }
