@@ -114,16 +114,16 @@ function hit() {
     let cardImg = document.createElement("img");
     let card = deck.pop();
     cardImg.src = "./cards/" + card + ".png";
-    yourSum += getValue(card);
     yourAceCount += checkAce(card);
+    yourSum += getValue(card);
+    yourSum = reduceAce(yourSum, yourAceCount);
+    yourAceCount = 0;
     document.getElementById("your-cards").append(cardImg);
-
-    if ((reduceAce(yourSum, yourAceCount) > 21) || (reduceAce(yourSum, yourAceCount)==21)) {
+    document.getElementById("your-sum").innerText = yourSum;
+    if ((yourSum > 21) || (yourSum==21)) {
         canHit = false;
         canStay = false;
     }
-
-    document.getElementById("your-sum").innerText = yourSum;
     if(yourSum > 21){
         message = "You Lose!";
         lose.play();
