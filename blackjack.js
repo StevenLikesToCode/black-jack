@@ -98,7 +98,10 @@ function dealerJudge(){
         cardImg.src = "./cards/" + card + ".png";
         dealerSum += getValue(card);
         dealerAceCount += checkAce(card);
-        dealerSum = reduceAce(dealerSum, dealerAceCount);
+        if(dealerSum >= 21){
+            dealerSum = reduceAce(dealerSum, dealerAceCount);
+            dealerAceCount = 0;
+        }
         document.getElementById("dealer-cards").append(cardImg);
     }
 }
@@ -162,6 +165,7 @@ function stay() {
     //both you and dealer <= 21
     else if (yourSum == dealerSum) {
         message = "Tie!";
+        tie.play();
     }
     else if (yourSum > dealerSum) {
         message = "You Win!";
@@ -201,7 +205,7 @@ function checkAce(card) {
 
 function reduceAce(playerSum, playerAceCount) {
     while (playerSum > 21 && playerAceCount > 0) {
-        playerSum =  playerSum - 10;
+        playerSum = playerSum - 10;
         playerAceCount = playerAceCount - 1;
     }
     return playerSum;
