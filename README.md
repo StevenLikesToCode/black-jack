@@ -16,9 +16,9 @@
 -->
 
 ## 🚀 Cool tech
-- Javascript
 - HTML
 - CSS
+- Javascript
 
 ## ✅ Future features
 I would like to add chips, insurance, and double players, etc.
