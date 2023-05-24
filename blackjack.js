@@ -24,8 +24,11 @@ var tie = new Audio('music/tie.mp3');
 window.onload = function() {
     buildDeck();
     shuffleDeck();
-    // setBets();
     startGame();
+    document.getElementById('newGame').addEventListener('click', function() {
+        // Reload the page
+        location.reload();
+      });
 }
 
 function buildDeck() {
@@ -92,7 +95,7 @@ function startGame() {
 }
 
 function dealerJudge(){
-    while ((dealerSum < 17) || (dealerSum < yourSum)){
+    while (dealerSum < 17) {
         let cardImg = document.createElement("img");
         let card = deck.pop();
         cardImg.src = "./cards/" + card + ".png";
